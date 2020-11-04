@@ -2,14 +2,14 @@
   "name": "iota-identity-js-workshop",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/01_hello_world",
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/01_hello_world",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "iota-identity-wasm-test": "0.0.2"
+    "iota-identity-wasm-test": "0.0.3"
   }
 }
