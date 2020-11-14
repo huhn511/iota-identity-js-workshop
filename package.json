@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "iota-identity-wasm-test": "0.0.3"
+    "iota-identity-wasm-test": "0.0.13"
   }
 }
