@@ -34,7 +34,7 @@ async function run() {
 
     console.log("Signed Doc: ", alice.doc.verify(), alice.doc.toJSON())
 
-    onsole.log("Publishing to the tangle...")
+    console.log("Publishing to the tangle...")
     // Publish the DID document
     console.log("Publish Result: https://explorer.iota.org/mainnet/transaction/" + await identity.publish(alice.doc.toJSON(), IOTA_CLIENT_CONFIG))
 }
