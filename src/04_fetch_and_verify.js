@@ -12,10 +12,13 @@ async function run() {
 
   // Published Alice DID
   let alice_did = "did:iota:main:Em2GPqpBiHQkpC7MKai8mTGbzNE2DmNSuKUcbmypoqn6"
-  let res = await identity.resolve(alice_did, IOTA_CLIENT_CONFIG)
 
+  console.log("Fetch and resolve DID: ", alice_did)
+  let res = await identity.resolve(alice_did, IOTA_CLIENT_CONFIG)
+  
   let document = identity.Doc.fromJSON(res.document)
-  console.log("document", document.verify(), document)
+  console.log("Verify Document: ", document.verify())
+  console.log("Document was created at: ", document.proof.created)
 }
   
 run()
