@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/01_hello_world",
+  "iota_address": "M9CGJRCFSEPEDJULUOCHXMLYQLRYNXYLSDCRMYG9GWLMYLJGET9IYBRLOWIR99KMXQW9WR9WMBPXZNIGXAA999DGUB",
   "scripts": {
     "start": "node src/01_hello_world",
     "test": "echo \"Error: no test specified\" && exit 1"
