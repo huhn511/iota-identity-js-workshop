@@ -4,17 +4,18 @@
 const identity = require('iota-identity-wasm-test/node')
 
 const IOTA_CLIENT_CONFIG = {
-    network: "main",
-    node: "https://nodes.thetangle.org:443",
-  }
+  network: "main",
+  node: "https://nodes.thetangle.org:443",
+}
 
 async function run() {
 
 
-  const alice = await generateUser("Company", IOTA_CLIENT_CONFIG.network)  const company = await generateUser("Company", IOTA_CLIENT_CONFIG.network)
+  const alice = await generateUser("Alice", IOTA_CLIENT_CONFIG.network)
+  const company = await generateUser("Company", IOTA_CLIENT_CONFIG.network)
 
-   // Prepare a credential subject indicating the degree earned by Alice
-   let credentialSubject = {
+  // Prepare a credential subject indicating the degree earned by Alice
+  let credentialSubject = {
     id: alice.did.id,
     name: alice.name,
     degree: {
@@ -23,13 +24,13 @@ async function run() {
     }
   }
 
-   // Issue a signed `CompanyCredential` credential to Alice
-   let vc = new identity.VerifiableCredential(company.doc, company.key, credentialSubject, "CompanyCredential", "http://company.com/credentials/1337");
+  // Issue a signed `CompanyCredential` credential to Alice
+  let vc = new identity.VerifiableCredential(company.doc, company.key, credentialSubject, "CompanyCredential", "http://company.com/credentials/1337");
 
-   console.log("Verifiable Credential: ", JSON.stringify(vc))
- 
+  console.log("Verifiable Credential: ", JSON.stringify(vc))
+
 }
-  
+
 run()
 
 
@@ -37,11 +38,15 @@ run()
 // helper function
 async function generateUser(name, network) {
   try {
+    console.log("Create User: ", name)
     const key = identity.Key.generateEd25519(network)
     const did = new identity.DID(key, network)
     const doc = new identity.Doc(identity.PubKey.generateEd25519(did, key.public))
     doc.sign(key)
-    await identity.publish(doc, IOTA_CLIENT_CONFIG)
+    let result = await identity.publish(doc, IOTA_CLIENT_CONFIG)
+    console.log("User created!")
+    console.log("Published to the Tangle: https://explorer.iota.org/mainnet/transaction/" + result)
+
     return {
       doc,
       did,
